@@ -1,0 +1,35 @@
+{
+  "name": "firebase-topic-sync",
+  "version": "1.0.0",
+  "description": "Batch (un)subscribe to/from Firebase topics",
+  "main": "server.js",
+  "scripts": {
+    "test": "ava",
+    "start": "micro",
+    "dev": "micro-dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sumpli/firebase-topic-sync.git"
+  },
+  "author": "Elias Nygrén (@elnygren)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sumpli/firebase-topic-sync/issues"
+  },
+  "homepage": "https://github.com/Sumpli/firebase-topic-sync#readme",
+  "dependencies": {
+    "console-stamp": "^0.2.6",
+    "fcm-node": "^1.2.1",
+    "firebase-admin": "^5.12.1",
+    "micro": "^9.3.2",
+    "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "micro-dev": "^3.0.0",
+    "mockery": "^2.1.0",
+    "request-promise": "^4.2.2",
+    "test-listen": "^1.1.0"
+  }
+}
