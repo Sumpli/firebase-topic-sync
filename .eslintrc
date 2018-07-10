@@ -28,6 +28,5 @@
     "quotes": ["off", "single"],
     "require-yield": "error",
     "semi": ["error", "never"]
-  },
-  "plugins": ["babel", "prettier"]
+  }
 }
