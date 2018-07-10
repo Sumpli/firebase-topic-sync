@@ -109,7 +109,7 @@ module.exports = handleErrors(async (req, res) => {
 
   unsubscribe.map(topic => {
     for (let registrationTokens_chunk of get_chunk(registrationTokens)) {
-      fcm.unsubscribeToTopic(registrationTokens, topic, fcmCallback)
+      fcm.unsubscribeToTopic(registrationTokens_chunk, topic, fcmCallback)
     }
   })
 
