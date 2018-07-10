@@ -1,0 +1,33 @@
+{
+  "extends": ["eslint:recommended", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "comma-dangle": ["warn", "always-multiline"],
+    "constructor-super": "error",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "jsx-quotes": "warn",
+    "linebreak-style": ["error", "unix"],
+    "no-class-assign": "error",
+    "no-const-assign": "error",
+    "no-console": "off",
+    "no-dupe-class-members": "error",
+    "no-this-before-super": "error",
+    "no-unused-vars": ["error", { "args": "none" }],
+    "no-var": "warn",
+    "prefer-spread": "warn",
+    "prefer-template": "warn",
+    "quotes": ["off", "single"],
+    "require-yield": "error",
+    "semi": ["error", "never"]
+  },
+  "plugins": ["babel", "prettier"]
+}

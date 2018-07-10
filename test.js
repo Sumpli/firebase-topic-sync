@@ -12,7 +12,7 @@ let unsubscribeCallCounter = 0
   Mocking, setup, helpers
  */
 
-function FCM() {}
+function FCM() { }
 FCM.prototype.subscribeToTopic = (tokens, topic) => {
   console.log('subscribeToTopic called!')
   subscribeCallCounter++
@@ -47,7 +47,7 @@ test('input data is validated I', async t => {
   mockery.enable()
   const url = await listen(service)
   try {
-    const body = await post(url, {subscribe: 'fail'})
+    const body = await post(url, { subscribe: 'fail' })
   } catch (e) {
     t.is(e.response.statusCode, 400)
     t.deepEqual(e.response.body, {
