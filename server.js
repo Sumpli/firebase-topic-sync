@@ -1,6 +1,6 @@
-const { json, send } = require('micro')
+const {json, send} = require('micro')
 const FCM = require('fcm-node')
-require('console-stamp')(console, { pattern: 'dd/mm/yyyy HH:MM:ss.l' })
+require('console-stamp')(console, {pattern: 'dd/mm/yyyy HH:MM:ss.l'})
 
 const serverKey = process.env.FCM_API_KEY
 if (!serverKey) console.warn('FCM_API_KEY is not set')
@@ -15,7 +15,7 @@ const handleErrors = fn => async (req, res) => {
     return await fn(req, res)
   } catch (err) {
     console.error(err.stack)
-    send(res, 500, { error: 'internal-error', message: 'Internal server error' })
+    send(res, 500, {error: 'internal-error', message: 'Internal server error'})
   }
 }
 
@@ -31,7 +31,7 @@ function fcmCallback(err, res) {
 
   const errors = res.results.filter(obj => ('error' in obj))
   if (errors.length) {
-    errors.forEach(obj => { console.error('error:', obj.error) })
+    errors.forEach(obj => {console.error('error:', obj.error)})
   } else {
     console.info('success:', res.results)
   }
@@ -41,11 +41,12 @@ const FCM_MAX_RECIPIENTS = 1000
 
 /**
  * Produces batches of a given chunk size
- * @param {Object[]} data 
- * @param {number} chunk_size 
+ * @param {Object[]} data
+ * @param {number} chunk_size
  */
 function* get_chunk(data, chunk_size = FCM_MAX_RECIPIENTS) {
-  chunk_size = chunk_size && chunk_size >= 1 ? Math.floor(chunk_size) : FCM_MAX_RECIPIENTS
+  chunk_size =
+    chunk_size && chunk_size >= 1 ? Math.floor(chunk_size) : FCM_MAX_RECIPIENTS
   const len = data.length
   const chunk_number = Math.ceil(len / chunk_size)
   for (let i = 0; i < chunk_number; i++) {
