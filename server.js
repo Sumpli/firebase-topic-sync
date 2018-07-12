@@ -45,8 +45,7 @@ const FCM_MAX_RECIPIENTS = 1000
  * @param {number} chunk_size
  */
 function* get_chunk(data, chunk_size = FCM_MAX_RECIPIENTS) {
-  chunk_size =
-    chunk_size && chunk_size >= 1 ? Math.floor(chunk_size) : FCM_MAX_RECIPIENTS
+  chunk_size = chunk_size && chunk_size >= 1 ? Math.floor(chunk_size) : FCM_MAX_RECIPIENTS
   const len = data.length
   const chunk_number = Math.ceil(len / chunk_size)
   for (let i = 0; i < chunk_number; i++) {
