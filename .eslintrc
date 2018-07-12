@@ -1,0 +1,23 @@
+{
+  "extends": ["eslint:recommended"],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "no-console": "off",
+    "quotes": ["warn", "single"],
+    "object-curly-spacing": ["error", "never"],
+    "array-bracket-spacing": ["error", "never"],
+    "semi": ["error", "never"],
+    "object-curly-newline": "off",
+    "max-len":["warn", 100],
+    "comma-dangle":"off"
+  }
+}

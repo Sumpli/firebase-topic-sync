@@ -37,6 +37,22 @@ function fcmCallback(err, res) {
   }
 }
 
+const FCM_MAX_RECIPIENTS = 1000
+
+/**
+ * Produces batches of a given chunk size
+ * @param {Object[]} data
+ * @param {number} chunk_size
+ */
+function* get_chunk(data, chunk_size = FCM_MAX_RECIPIENTS) {
+  chunk_size = chunk_size && chunk_size >= 1 ? Math.floor(chunk_size) : FCM_MAX_RECIPIENTS
+  const len = data.length
+  const chunk_number = Math.ceil(len / chunk_size)
+  for (let i = 0; i < chunk_number; i++) {
+    yield data.slice(i * chunk_size, Math.min((i + 1) * chunk_size, len))
+  }
+}
+
 /*
 Main
 
@@ -86,11 +102,15 @@ module.exports = handleErrors(async (req, res) => {
   // diff state of topics with our own backend to prevent corruptions in data
 
   subscribe.map(topic => {
-    fcm.subscribeToTopic(registrationTokens, topic, fcmCallback)
+    for (let registrationTokens_chunk of get_chunk(registrationTokens)) {
+      fcm.subscribeToTopic(registrationTokens_chunk, topic, fcmCallback)
+    }
   })
 
   unsubscribe.map(topic => {
-    fcm.unsubscribeToTopic(registrationTokens, topic, fcmCallback)
+    for (let registrationTokens_chunk of get_chunk(registrationTokens)) {
+      fcm.unsubscribeToTopic(registrationTokens_chunk, topic, fcmCallback)
+    }
   })
 
   // early return, fcm calls are still pending
